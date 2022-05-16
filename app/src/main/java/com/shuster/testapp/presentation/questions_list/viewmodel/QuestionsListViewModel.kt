@@ -40,7 +40,7 @@ class QuestionsListViewModel @Inject constructor(
 
     fun setAnswer(answer: AnswerUiModel) {
         answers[answer.id] = answer.text
-        checkHasErrors {}
+        clearError(answer)
     }
 
     fun submit() {
@@ -58,6 +58,17 @@ class QuestionsListViewModel @Inject constructor(
             is Success -> _messages.emit(Text.Resource(R.string.saved))
             is Failure -> _messages.emit(Text.Resource(R.string.save_error))
         }
+    }
+
+    private fun clearError(answer: AnswerUiModel) {
+        val newData = (questionsResult.value as? QuestionListState.Success)?.data?.map { question ->
+            if (question.id == answer.id && question.required && answer.text.isNotBlank()) {
+                question.copy(error = null)
+            } else {
+                question
+            }
+        } ?: error("Illegal state")
+        _questionsResult.tryEmit(QuestionListState.Success(newData))
     }
 
     private fun checkHasErrors(doIfNoErrors: () -> Unit) {
