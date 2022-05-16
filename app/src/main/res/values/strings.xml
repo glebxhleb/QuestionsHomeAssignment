@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">TestApp</string>
+    <string name="test_title">GoTech \nQuestionnarie</string>
+    <string name="test_description">Show me what you got!</string>
+    <string name="required_notice">*Required</string>
+    <string name="answer_input_hint">Your answer</string>
+    <string name="submit">Submit</string>
+    <string name="required_field_error">Field is required</string>
+    <string name="saved">Saved</string>
+    <string name="save_error">Error, answers not saved</string>
+    <string name="other">Other:</string>
+    <string name="fill_required_fields_error">Fill all required fields</string>
+</resources>
